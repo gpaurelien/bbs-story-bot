@@ -4,8 +4,6 @@ import time
 
 class Bot:
     def findAndClick(self, path):
-        # Will find the image, then click it. 
-        # Returns false and terminates if nothing is found
         coords = pag.locateCenterOnScreen(path, confidence=0.8)
 
         if not coords:
@@ -17,7 +15,7 @@ class Bot:
         return True
     
     def run(self):
-        inMission = True # We consider starting the bot in a mission
+        inMission = True
 
         startFailed = auto = 0
 
@@ -26,10 +24,12 @@ class Bot:
         while 1: 
             if startFailed < 10:
                 if inMission:
-                    if self.findAndClick("assets\\auto.png") and not auto:
-                        auto += 1
-                        print('The bot is running...')
-                        time.sleep(60) # Until the quest is over
+                    if self.findAndClick("assets\\auto.png"):
+                        if not auto:
+                            auto += 1
+                            print('The bot is running...')
+                        
+                        time.sleep(60) # waiting for the bot to complete the quest
                 
                     elif self.findAndClick('assets\\skip.jpg'):
                         print('Conversation skipped')
@@ -38,19 +38,20 @@ class Bot:
                         print('Friend requests handled')
 
                     elif self.findAndClick('assets\\touch_screen.jpg'):
-                        print('Touch screeen action handled')
+                        print('Touch screen action handled')
 
                     elif self.findAndClick("assets\\next_quest.png"):
                         inMission = False
                         time.sleep(5)
 
                 else:
-                    pag.click(x=1054, y=826)
+                    pag.click(x=1054, y=826) # skip cinematic
                     
                     if self.findAndClick('assets\\skip.jpg'):
                         print('Conversation skipped')
 
                     elif self.findAndClick('assets\\prep_quest.jpg'):
+                        print('Quest preparation handled')
                         time.sleep(5)
 
                     elif self.findAndClick('assets\\start_quest.jpg'):
