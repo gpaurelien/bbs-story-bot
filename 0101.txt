@@ -1,5 +1,0 @@
-Skip dialog --> auto --> skip (before boss) --> skip (after boss) --> friend request
---> touch the screen * 2 --> fermer cadeau --> fermer cadeau --> "Limités" --> "difficile"
---> prep_quest --> lancer 
-
-Cas à gérer : quête cinématique --> click au hasard sur l'écran --> prep_quest --> etc..
